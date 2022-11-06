@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link 
+  rel="stylesheet" 
+  type="text/css" 
+  href="{% static 'css/records/record-detail.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+
+<section class="cat-container">
+  <div class="cat-img">
+    <img 
+      src="{% static 'images/sk8r-boi-cat.svg' %}" 
+      alt="A skater boy cat"
+    >
+  </div>
+  <div class="cat-details">
+    <h1>{{ record.name }}</h1>
+    <h2>by: {{ record.artist }}</h2>
+    <h2>released in: {{ record.release_year }}</h2>
+    <p>{{ record.description }}</p>
+  </div>
+</section>
+
+{% endblock %}
