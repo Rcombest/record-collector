@@ -6,4 +6,4 @@ def home(request):
   return HttpResponse('<h1>Henlo</h1>')
 
 def about(request):
-  return HttpResponse('<h1>About the RecordCollector</h1>')
+  return render(request, 'about.html')
