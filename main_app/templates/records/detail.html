@@ -23,6 +23,10 @@
     <h2>by: {{ record.artist }}</h2>
     <h2>released in: {{ record.release_year }}</h2>
     <p>{{ record.description }}</p>
+    <div class='cat-actions'>
+      <a href="{% url 'records_update' record.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'records_delete' record.id %}" class="btn danger">Delete</a>
+    </div>
   </div>
 </section>
 
