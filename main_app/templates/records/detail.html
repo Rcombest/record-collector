@@ -29,5 +29,47 @@
     </div>
   </div>
 </section>
+<div class="feedings-toy-container">
+  <section class="feedings">
+    <div class="subsection-title">
+      <h2>Last Spun</h2>
+      <img 
+        src="{% static 'images/cat-cone.svg' %}" 
+        alt="An ice cream cone cat"
+      />
+      <img 
+        src="{% static 'images/cat-onigiri.svg' %}"
+        alt="A cat as onigiri"
+      />
+      <img 
+        src="{% static 'images/kitty-kabob.svg' %}" 
+        alt="A kabob of kittens"
+      />
+    </div>
+    <h3>Add a Listening Session</h3>
+    <form 
+      method="POST"
+      class="subsection-content"
+    >
+      {% csrf_token %}
+      {{ spun_form.as_p }}
+      <button type="submit" class="btn submit">Add Session</button>
+    </form>
+    <h3>Past Sessions</h3>
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Listened To</th></tr>
+      </thead>
+      <tbody>
+        {% for spun in record.spun_set.all %}
+          <tr>
+            <td>{{spun.date}}</td>
+            <td>{{spun.get_listened_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
 
 {% endblock %}

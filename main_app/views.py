@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Record
+from .forms import SpunForm
 
 # Create your views here.
 def home(request):
@@ -15,7 +16,10 @@ def records_index(request):
 
 def records_detail(request, record_id):
   record = Record.objects.get(id=record_id)
-  return render(request, 'records/detail.html', { 'record': record })
+  spun_form = SpunForm()
+  return render(request, 'records/detail.html', { 
+    'record': record, 'spun_form': spun_form 
+  })
 
 class RecordCreate(CreateView):
   model = Record
