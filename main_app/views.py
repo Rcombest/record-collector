@@ -51,3 +51,11 @@ class SongList(ListView):
 
 class SongDetail(DetailView):
   model = Song
+
+class SongUpdate(UpdateView):
+  model = Song
+  fields = ['name', 'fav_lyrics']
+
+class SongDelete(DeleteView):
+  model = Song
+  success_url = '/songs/'
