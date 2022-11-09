@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Record
+from .models import Record, Song
 from .forms import SpunForm
 
 # Create your views here.
@@ -40,3 +41,13 @@ def add_spun(request, record_id):
     new_spun.record_id = record_id
     new_spun.save()
   return redirect('records_detail', record_id=record_id)
+
+class SongCreate(CreateView):
+  model = Song
+  fields = "__all__"
+
+class SongList(ListView):
+  model = Song
+
+class SongDetail(DetailView):
+  model = Song

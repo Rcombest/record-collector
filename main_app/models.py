@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
 
 LISTENED = (
   ('F', 'A few songs'),
@@ -9,6 +10,18 @@ LISTENED = (
 )
 
 # Create your models here.
+
+class Song(models.Model):
+  name = models.CharField(max_length=100)
+  fav_lyrics = models.CharField(max_length=250)
+
+  def __str__(self):
+    return self.name
+
+  def get_absolute_url(self):
+    return reverse("songs_detail", kwargs={"pk": self.id})
+  
+
 class Record(models.Model):
   name = models.CharField(max_length=100)
   artist = models.CharField(max_length=100)
@@ -19,7 +32,10 @@ class Record(models.Model):
     return self.name
 
   def get_absolute_url(self):
-      return reverse("records_detail", kwargs={"record_id": self.id})
+    return reverse("records_detail", kwargs={"record_id": self.id})
+
+  def spun_for_today(self):
+    return self.spun_set.filter(date=date.today()).count() >= 1 
 
 class Spun(models.Model):
   date = models.DateField('Last Spun')

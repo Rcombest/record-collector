@@ -62,6 +62,11 @@
       method="POST"
       class="subsection-content"
     >
+      {% if record.spun_for_today %}
+        <p class="fed">You spun {{record.name}}!</p>
+      {% else %}
+        <p class="unfed">You haven't spun {{record.name}} today</p>
+      {% endif %}
       {% csrf_token %}
       {{ spun_form.as_p }}
       <button type="submit" class="btn submit">Add Session</button>
@@ -83,7 +88,7 @@
       </table>
     {% else %}
       <div class="subsection-content">
-        <p>{{record.name}} has never been spun</p>
+        <p>{{record.name}} has never been spun! You should spend some time with it!</p>
       </div>
     {% endif %}
   </section>
