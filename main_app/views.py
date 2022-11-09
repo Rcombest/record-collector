@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView
 from .models import Record, Song
@@ -31,7 +32,7 @@ def records_detail(request, record_id):
     'songs': songs_record_doesnt_have
   })
 
-class RecordCreate(CreateView):
+class RecordCreate(LoginRequiredMixin, CreateView):
   model = Record
   fields = ['name', 'artist', 'description', 'release_year']
 
@@ -39,11 +40,11 @@ class RecordCreate(CreateView):
     form.instance.user = self.request.user
     return super().form_valid(form)
 
-class RecordUpdate(UpdateView):
+class RecordUpdate(LoginRequiredMixin, UpdateView):
   model = Record
   fields = ['name', 'artist', 'description', 'release_year']
 
-class RecordDelete(DeleteView):
+class RecordDelete(LoginRequiredMixin, DeleteView):
   model = Record
   success_url = '/records/'
 
@@ -56,21 +57,21 @@ def add_spun(request, record_id):
     new_spun.save()
   return redirect('records_detail', record_id=record_id)
 
-class SongCreate(CreateView):
+class SongCreate(LoginRequiredMixin, CreateView):
   model = Song
   fields = "__all__"
 
-class SongList(ListView):
+class SongList(LoginRequiredMixin, ListView):
   model = Song
 
-class SongDetail(DetailView):
+class SongDetail(LoginRequiredMixin, DetailView):
   model = Song
 
-class SongUpdate(UpdateView):
+class SongUpdate(LoginRequiredMixin, UpdateView):
   model = Song
   fields = ['name', 'fav_lyrics']
 
-class SongDelete(DeleteView):
+class SongDelete(LoginRequiredMixin, DeleteView):
   model = Song
   success_url = '/songs/'
 
