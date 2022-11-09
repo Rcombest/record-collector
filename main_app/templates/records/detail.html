@@ -127,7 +127,7 @@
             <a href="{% url 'songs_detail' song.id %}">
               <p>{{ song.name }}</p>
             </a>
-            <form action="" method="post">
+            <form action="{% url 'assoc_song' record.id song.id %}" method="post">
               {% csrf_token %}
               <button type="submit" class="btn submit">Add Song</button>
             </form>

@@ -62,3 +62,7 @@ class SongUpdate(UpdateView):
 class SongDelete(DeleteView):
   model = Song
   success_url = '/songs/'
+
+def assoc_song(request, record_id, song_id):
+  Record.objects.get(id=record_id).songs.add(song_id)
+  return redirect('records_detail', record_id=record_id)
