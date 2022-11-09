@@ -30,6 +30,10 @@ class RecordCreate(CreateView):
   model = Record
   fields = ['name', 'artist', 'description', 'release_year']
 
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
 class RecordUpdate(UpdateView):
   model = Record
   fields = ['name', 'artist', 'description', 'release_year']
