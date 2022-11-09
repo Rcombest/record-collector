@@ -57,7 +57,8 @@
       />
     </div>
     <h3>Add a Listening Session</h3>
-    <form 
+    <form
+      action="{% url 'add_spun' record.id %}"
       method="POST"
       class="subsection-content"
     >
@@ -66,19 +67,25 @@
       <button type="submit" class="btn submit">Add Session</button>
     </form>
     <h3>Past Sessions</h3>
-    <table>
-      <thead>
-        <tr><th>Date</th><th>Listened To</th></tr>
-      </thead>
-      <tbody>
-        {% for spun in record.spun_set.all %}
-          <tr>
-            <td>{{spun.date}}</td>
-            <td>{{spun.get_listened_display}}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    {% if record.spun_set.all.count %}
+      <table>
+        <thead>
+          <tr><th>Date</th><th>Listened To</th></tr>
+        </thead>
+        <tbody>
+          {% for spun in record.spun_set.all %}
+            <tr>
+              <td>{{spun.date}}</td>
+              <td>{{spun.get_listened_display}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="subsection-content">
+        <p>{{record.name}} has never been spun</p>
+      </div>
+    {% endif %}
   </section>
 </div>
 

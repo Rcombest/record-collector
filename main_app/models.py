@@ -33,3 +33,6 @@ class Spun(models.Model):
 
   def __str__(self):
     return f"{self.get_listened_display()} on {self.date}"
+
+  class Meta:
+    ordering = ['-date']

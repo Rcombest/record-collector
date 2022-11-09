@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Record
 from .forms import SpunForm
@@ -32,3 +32,11 @@ class RecordUpdate(UpdateView):
 class RecordDelete(DeleteView):
   model = Record
   success_url = '/records/'
+
+def add_spun(request, record_id):
+  form = SpunForm(request.POST)
+  if form.is_valid():
+    new_spun = form.save(commit=False)
+    new_spun.record_id = record_id
+    new_spun.save()
+  return redirect('records_detail', record_id=record_id)
