@@ -27,6 +27,7 @@ class Record(models.Model):
   artist = models.CharField(max_length=100)
   description = models.CharField(max_length=250)
   release_year = models.IntegerField()
+  songs = models.ManyToManyField(Song)
   
   def __str__(self):
     return self.name

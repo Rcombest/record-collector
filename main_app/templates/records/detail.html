@@ -92,6 +92,54 @@
       </div>
     {% endif %}
   </section>
+  <section class="songs">
+    <div class="subsection-title">
+      <h2>Songs</h2>
+      <img src="{% static 'images/string.svg' %}" alt="A ball of string" />
+      <img src="{% static 'images/mouse.svg' %}" alt="A mouse" />
+      <img src="{% static 'images/fish.svg' %}" alt="A fishy toy" />
+    </div>
+    <h3>{{ record.name }}'s Songs</h3>
+    <div class="subsection-content">
+      {% if record.songs.count %}
+        {% for song in record.songs.all %}
+          <div class="toy-container">
+            <div 
+              class="color-block"
+            ></div>
+            <a href="{% url 'songs_detail' song.id %}">
+              <p>{{ song.name }}</p>
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-toys">{{record.name}} doesn't have any songs 😞</p>
+      {% endif %}
+    </div>
+    <h3>Available Songs</h3>
+    <div class="subsection-content">
+      {% if songs.count %}
+        {% for song in songs.all %}
+          <div class="toy-container">
+            <div 
+              class="color-block"
+            ></div>
+            <a href="{% url 'songs_detail' song.id %}">
+              <p>{{ song.name }}</p>
+            </a>
+            <form action="" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn submit">Add Song</button>
+            </form>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="all-toys">
+          {{record.name}} already has all the available songs 🥳
+        </p>
+      {% endif %}
+    </div>
+  </section>
 </div>
 
 {% endblock %}

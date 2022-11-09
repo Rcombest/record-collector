@@ -17,14 +17,17 @@ def records_index(request):
 
 def records_detail(request, record_id):
   record = Record.objects.get(id=record_id)
+  songs_record_doesnt_have = Song.objects.exclude(id__in = record.songs.all().values_list('id'))
   spun_form = SpunForm()
   return render(request, 'records/detail.html', { 
-    'record': record, 'spun_form': spun_form 
+    'record': record, 
+    'spun_form': spun_form,
+    'songs': songs_record_doesnt_have
   })
 
 class RecordCreate(CreateView):
   model = Record
-  fields = '__all__'
+  fields = ['name', 'artist', 'description', 'release_year']
 
 class RecordUpdate(UpdateView):
   model = Record
