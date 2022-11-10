@@ -26,7 +26,7 @@
     <a href="{% url 'songs_detail' song.id %}">
       <div class="card-content">
         <h2>{{ song.name }}</h2>
-        <p>"{{ song.fav_lyrics }}"</p>
+        {% comment %} <p>"{{ song.fav_lyrics }}"</p> for future implementation {% endcomment %}
       </div>
     </a>
   </div>

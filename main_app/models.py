@@ -14,7 +14,7 @@ LISTENED = (
 
 class Song(models.Model):
   name = models.CharField(max_length=100)
-  fav_lyrics = models.CharField(max_length=250)
+  # fav_lyrics = models.CharField(max_length=250)
 
   def __str__(self):
     return self.name

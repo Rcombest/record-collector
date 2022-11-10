@@ -59,7 +59,7 @@ def add_spun(request, record_id):
 
 class SongCreate(LoginRequiredMixin, CreateView):
   model = Song
-  fields = "__all__"
+  fields = ["name"]
 
 class SongList(LoginRequiredMixin, ListView):
   model = Song
@@ -69,7 +69,7 @@ class SongDetail(LoginRequiredMixin, DetailView):
 
 class SongUpdate(LoginRequiredMixin, UpdateView):
   model = Song
-  fields = ['name', 'fav_lyrics']
+  fields = ['name']
 
 class SongDelete(LoginRequiredMixin, DeleteView):
   model = Song
