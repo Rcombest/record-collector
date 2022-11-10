@@ -21,26 +21,26 @@
 
 {% block content %}
 
-<section class="cat-container">
+<section class="record-container">
   <div class="cat-img">
     <img 
       src="{% static 'images/sk8r-boi-cat.svg' %}" 
       alt="A skater boy cat"
     >
   </div>
-  <div class="cat-details">
+  <div class="record-details">
     <h1>{{ record.name }}</h1>
     <h2>by: {{ record.artist }}</h2>
     <h2>released in: {{ record.release_year }}</h2>
     <p>{{ record.description }}</p>
-    <div class='cat-actions'>
+    <div class='record-actions'>
       <a href="{% url 'records_update' record.id %}" class="btn warn">Edit</a>
       <a href="{% url 'records_delete' record.id %}" class="btn danger">Delete</a>
     </div>
   </div>
 </section>
-<div class="feedings-toy-container">
-  <section class="feedings">
+<div class="spun-song-container">
+  <section class="spun">
     <div class="subsection-title">
       <h2>Last Spun</h2>
       {% comment %} <img 
@@ -63,9 +63,9 @@
       class="subsection-content"
     >
       {% if record.spun_for_today %}
-        <p class="fed">You spun {{record.name}}!</p>
+        <p class="spun-rec">You spun {{record.name}}!</p>
       {% else %}
-        <p class="unfed">You haven't spun {{record.name}} today</p>
+        <p class="unspun">You haven't spun {{record.name}} today</p>
       {% endif %}
       {% csrf_token %}
       {{ spun_form.as_p }}
@@ -103,7 +103,7 @@
     <div class="subsection-content">
       {% if record.songs.count %}
         {% for song in record.songs.all %}
-          <div class="toy-container">
+          <div class="song-container">
             <div 
               class="color-block"
             ></div>
@@ -113,14 +113,14 @@
           </div>
         {% endfor %}
       {% else %}
-        <p class="no-toys">{{record.name}} doesn't have any songs 😞</p>
+        <p class="no-songs">{{record.name}} doesn't have any songs 😞</p>
       {% endif %}
     </div>
     <h3>Available Songs</h3>
     <div class="subsection-content">
       {% if songs.count %}
         {% for song in songs.all %}
-          <div class="toy-container">
+          <div class="song-container">
             <div 
               class="color-block"
             ></div>
@@ -134,7 +134,7 @@
           </div>
         {% endfor %}
       {% else %}
-        <p class="all-toys">
+        <p class="all-songs">
           None
         </p>
       {% endif %}
