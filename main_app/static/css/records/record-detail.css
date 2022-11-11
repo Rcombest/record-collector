@@ -11,11 +11,6 @@
   max-width: 350px;
 }
 
-/* .usr-img {
-  width: 100%;
-  border-radius: var(--card-border-radius);
-} */
-
 .record-details {
   width: 98%;
 }
@@ -83,11 +78,6 @@
   margin-top: 0;
   margin-bottom: 10px;
 }
-
-/* .cat-details h3 {
-  margin: 20px 0 10px;
-  font-size: var(--font-l);
-} */
 
 .record-details p {
   font-size: var(--font-reg);
