@@ -20,4 +20,27 @@ The Discog-Cat Record Collector allows users to be more mindful of their listeni
 - Heroku
 - HTML
 - JavaScript
+- MCDatepicker
 - Python
+
+## Icebox Items
+- [ ] Add functionality to track the last time a user cleaned their record
+- [ ] Add functionality to limit a song to being assigned to one record at a time
+- [ ] Let users add their favorite lyrics to a song
+- [ ] Add functionality to add highlights to a record
+
+## Links
+
+[Launch](https://discog-cat.herokuapp.com/)
+
+## Credits
+
+I want to thank [Hunter Long](https://github.com/whlong1) for granting his permission to use his "sk8r-boi-cat" image.
+
+## Screenshots
+
+![Login Screen](main_app/static/images/login.png)
+
+![Record Details Page](main_app/static/images/details.png)
+
+![Record List Page](main_app/static/images/list.png)
